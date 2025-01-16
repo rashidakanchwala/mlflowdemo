@@ -69,9 +69,16 @@ regressor:
   type: pickle.PickleDataset
   filepath: data/06_models/regressor.pickle
 
+# regressor:
+#   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
+#   flavor: mlflow.sklearn
+
 # metrics:
 #   type: tracking.MetricsDataset
 #   filepath: data/09_tracking/metrics.json
+
+# metrics:
+#   type: kedro_mlflow.io.metrics.MlflowMetricDataset
 
 companies_columns:
   type: tracking.JSONDataset
@@ -98,3 +105,7 @@ shuttle_passenger_capacity_plot_go:
 dummy_confusion_matrix:
   type: matplotlib.MatplotlibWriter
   filepath: data/08_reporting/dummy_confusion_matrix.png
+
+
+# type: kedro_mlflow.io.artifacts.MlflowArtifactDataset
+# dataset:
