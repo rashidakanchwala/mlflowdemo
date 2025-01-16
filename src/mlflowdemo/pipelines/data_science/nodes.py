@@ -38,20 +38,40 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series) -> LinearRegression:
     return regressor
 
 
+def calculate_r2_score(y_test: pd.Series, y_pred: pd.Series) -> float:
+    """Calculates the R^2 score."""
+    return r2_score(y_test, y_pred)
+
+def calculate_mae(y_test: pd.Series, y_pred: pd.Series) -> float:
+    """Calculates the Mean Absolute Error."""
+    return mean_absolute_error(y_test, y_pred)
+
+def calculate_max_error(y_test: pd.Series, y_pred: pd.Series) -> float:
+    """Calculates the Maximum Error."""
+    return max_error(y_test, y_pred)
+
 def evaluate_model(
     regressor: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series
 ) -> dict[str, float]:
-    """Calculates and logs the coefficient of determination.
+    """Calculates and logs the evaluation metrics for the model.
 
     Args:
         regressor: Trained model.
         X_test: Testing data of independent features.
         y_test: Testing data for price.
+
+    Returns:
+        A dictionary containing R^2 score, MAE, and Max Error.
     """
     y_pred = regressor.predict(X_test)
-    score = r2_score(y_test, y_pred)
-    mae = mean_absolute_error(y_test, y_pred)
-    me = max_error(y_test, y_pred)
+
+    score = calculate_r2_score(y_test, y_pred)
+    mae = calculate_mae(y_test, y_pred)
+    me = calculate_max_error(y_test, y_pred)
+
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    return score
+    logger.info("Model has a Mean Absolute Error (MAE) of %.3f.", mae)
+    logger.info("Model has a Maximum Error of %.3f.", me)
+
+    return {"r2_score": score, "mae": mae, "max_error": me}
