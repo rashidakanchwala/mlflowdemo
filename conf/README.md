@@ -18,3 +18,14 @@ WARNING: Please do not put access credentials in the base configuration folder.
 
 ## Find out more
 You can find out more about configuration from the [user guide documentation](https://docs.kedro.org/en/stable/configuration/configuration_basics.html).
+
+
+Migration from Kedro-Viz Native Experiment Tracking to Kedro-Mlflow 
+
+| **Kedro-Viz Dataset Type**           | **MLflow Dataset Type**        | **Configuration Details**                       |
+|--------------------------------------|---------------------------------|------------------------------------------------|
+| `tracking.MetricsDataset`           | `MlflowMetricDataset`          | No additional configuration needed.            |
+| `tracking.JSONDataset`              | `MlflowArtifactDataset`        | Wrap within `MlflowArtifactDataset` and configure as `json.JSONDataset`. |
+| `plotly.plotlyDataset`              | `MlflowArtifactDataset`        | Wrap within `MlflowArtifactDataset`.           |
+| `plotly.JSONDataset`                | `MlflowArtifactDataset`        | Wrap within `MlflowArtifactDataset`.           |
+| `matplotlib.MatplotlibWriter`       | `MlflowArtifactDataset`        | Wrap within `MlflowArtifactDataset`.           |
