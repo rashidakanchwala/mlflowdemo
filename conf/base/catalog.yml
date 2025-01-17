@@ -69,6 +69,18 @@ regressor:
   type: pickle.PickleDataset
   filepath: data/06_models/regressor.pickle
 
+# r2_score:
+#   type: tracking.MetricDataSet
+#   filepath: data/09_tracking/r2_score.json
+
+# mae:
+#   type: tracking.MetricDataSet
+#   filepath: data/09_tracking/mae.json
+
+# max_error:
+#   type: tracking.MetricDataSet
+#   filepath: data/09_tracking/max_error.json
+
 companies_columns:
   type: tracking.JSONDataset
   filepath: data/09_tracking/companies_columns.json
