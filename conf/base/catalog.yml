@@ -82,7 +82,7 @@ regressor:
 #   filepath: data/09_tracking/max_error.json
 
 companies_columns:
-  type: tracking.JSONDataset
+  type: json.JSONDataset
   filepath: data/09_tracking/companies_columns.json
 
 shuttle_passenger_capacity_plot_exp:
